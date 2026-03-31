@@ -1,0 +1,29 @@
+{
+  "name": "job-board-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/job-board-api",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "./venv/bin/python3.12 -m uvicorn app.main:app --reload",
+        "cwd": "apps/job-board-api"
+      }
+    },
+    "install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "python3.12 -m pip install -r requirements.txt",
+        "cwd": "apps/job-board-api"
+      }
+    },
+    "migrate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "./venv/bin/python3.12 -m alembic revision --autogenerate -m 'Initial migration' && ./venv/bin/python3.12 -m alembic upgrade head",
+        "cwd": "apps/job-board-api"
+      }
+    }
+  }
+}
