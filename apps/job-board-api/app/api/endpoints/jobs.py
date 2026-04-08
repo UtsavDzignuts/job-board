@@ -9,7 +9,7 @@ from app.schemas.schemas import JobRead, JobCreate, PaginatedResponse, JobApplic
 
 router = APIRouter()
 
-@router.get("/", response_model=PaginatedResponse[JobRead])
+@router.get("", response_model=PaginatedResponse[JobRead])
 def list_jobs(
     db: Session = Depends(get_session),
     search: Optional[str] = None,
@@ -59,7 +59,7 @@ def list_jobs(
         "data": jobs
     }
 
-@router.post("/", response_model=JobRead)
+@router.post("", response_model=JobRead)
 def create_job(
     *,
     db: Session = Depends(get_session),

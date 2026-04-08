@@ -7,14 +7,14 @@ from app.schemas.schemas import TagRead, TagBase
 
 router = APIRouter()
 
-@router.get("/", response_model=List[TagRead])
+@router.get("", response_model=List[TagRead])
 def list_tags(
     db: Session = Depends(get_session),
 ) -> Any:
     tags = db.exec(select(Tag)).all()
     return tags
 
-@router.post("/", response_model=TagRead)
+@router.post("", response_model=TagRead)
 def create_tag(
     *,
     db: Session = Depends(get_session),

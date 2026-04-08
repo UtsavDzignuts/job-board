@@ -9,7 +9,7 @@ from app.schemas.schemas import CompanyRead, CompanyCreate
 
 router = APIRouter()
 
-@router.get("/", response_model=List[CompanyRead])
+@router.get("", response_model=List[CompanyRead])
 def list_companies(
     db: Session = Depends(get_session),
     skip: int = 0,
@@ -18,7 +18,7 @@ def list_companies(
     companies = db.exec(select(Company).offset(skip).limit(limit)).all()
     return companies
 
-@router.post("/", response_model=CompanyRead)
+@router.post("", response_model=CompanyRead)
 def create_company(
     *,
     db: Session = Depends(get_session),
